@@ -1,0 +1,302 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1718998467258-1
+      author: ???? (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createSequence:
+            incrementBy: 1
+            sequenceName: cart_seq
+            startValue: 1
+  - changeSet:
+      id: 1718998467258-2
+      author: ???? (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createSequence:
+            incrementBy: 1
+            sequenceName: firm_seq
+            startValue: 1
+  - changeSet:
+      id: 1718998467258-3
+      author: ???? (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createSequence:
+            incrementBy: 1
+            sequenceName: knife_seq
+            startValue: 1
+  - changeSet:
+      id: 1718998467258-4
+      author: ???? (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createSequence:
+            incrementBy: 1
+            sequenceName: review_seq
+            startValue: 1
+  - changeSet:
+      id: 1718998467258-5
+      author: ???? (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createSequence:
+            incrementBy: 1
+            sequenceName: user_role_id_seq
+            startValue: 1
+  - changeSet:
+      id: 1718998467258-6
+      author: ???? (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createSequence:
+            incrementBy: 1
+            sequenceName: user_seq
+            startValue: 1
+  - changeSet:
+      id: 1718998467258-7
+      author: ???? (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_app_user
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: username
+                  type: VARCHAR(255)
+              - column:
+                  name: password
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: expired
+                  type: BOOLEAN
+              - column:
+                  constraints:
+                    nullable: false
+                  name: locked
+                  type: BOOLEAN
+              - column:
+                  constraints:
+                    nullable: false
+                  name: enabled
+                  type: BOOLEAN
+            tableName: app_user
+  - changeSet:
+      id: 1718998467258-8
+      author: ???? (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_cart
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: cart_name
+                  type: VARCHAR(255)
+              - column:
+                  name: user_id
+                  type: BIGINT
+            tableName: cart
+  - changeSet:
+      id: 1718998467258-9
+      author: ???? (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_firm
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: firm_name
+                  type: VARCHAR(255)
+              - column:
+                  name: phone
+                  type: VARCHAR(255)
+              - column:
+                  name: email
+                  type: VARCHAR(255)
+              - column:
+                  name: address
+                  type: VARCHAR(255)
+              - column:
+                  name: description
+                  type: VARCHAR(255)
+            tableName: firm
+  - changeSet:
+      id: 1718998467258-10
+      author: ???? (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_knife
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: id_firm
+                  type: BIGINT
+              - column:
+                  name: model
+                  type: VARCHAR(255)
+              - column:
+                  name: type
+                  type: VARCHAR(255)
+              - column:
+                  name: metal
+                  type: VARCHAR(255)
+              - column:
+                  name: lenght
+                  type: VARCHAR(255)
+              - column:
+                  name: cart_id
+                  type: BIGINT
+              - column:
+                  name: rating
+                  type: DOUBLE
+            tableName: knife
+  - changeSet:
+      id: 1718998467258-11
+      author: ???? (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_review
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: knife_id
+                  type: BIGINT
+              - column:
+                  name: user_id
+                  type: BIGINT
+              - column:
+                  name: rating
+                  type: INT
+              - column:
+                  name: review
+                  type: VARCHAR(255)
+            tableName: review
+  - changeSet:
+      id: 1718998467258-12
+      author: ???? (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_user_roles
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: user_authority
+                  type: SMALLINT
+              - column:
+                  name: user_id
+                  type: BIGINT
+            tableName: user_roles
+  - changeSet:
+      id: 1718998467258-13
+      author: ???? (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addUniqueConstraint:
+            columnNames: user_id
+            constraintName: uc_cart_user
+            tableName: cart
+  - changeSet:
+      id: 1718998467258-14
+      author: ???? (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: user_id
+            baseTableName: cart
+            constraintName: FK_CART_ON_USER
+            referencedColumnNames: id
+            referencedTableName: app_user
+  - changeSet:
+      id: 1718998467258-15
+      author: ???? (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: cart_id
+            baseTableName: knife
+            constraintName: FK_KNIFE_ON_CART
+            referencedColumnNames: id
+            referencedTableName: cart
+  - changeSet:
+      id: 1718998467258-16
+      author: ???? (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: id_firm
+            baseTableName: knife
+            constraintName: FK_KNIFE_ON_ID_FIRM
+            referencedColumnNames: id
+            referencedTableName: firm
+  - changeSet:
+      id: 1718998467258-17
+      author: ???? (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: knife_id
+            baseTableName: review
+            constraintName: FK_REVIEW_ON_KNIFE
+            referencedColumnNames: id
+            referencedTableName: knife
+  - changeSet:
+      id: 1718998467258-18
+      author: ???? (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: user_id
+            baseTableName: review
+            constraintName: FK_REVIEW_ON_USER
+            referencedColumnNames: id
+            referencedTableName: app_user
+  - changeSet:
+      id: 1718998467258-19
+      author: ???? (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: user_id
+            baseTableName: user_roles
+            constraintName: FK_USER_ROLES_ON_USER
+            referencedColumnNames: id
+            referencedTableName: app_user
+
