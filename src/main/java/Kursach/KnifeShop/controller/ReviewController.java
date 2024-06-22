@@ -17,7 +17,7 @@ public class ReviewController {
     private final ReviewService reviewService;
 
     @PostMapping("/{id}")
-    public ResponseEntity<Void> addFirm(@RequestBody ReviewModel reviewModel, @PathVariable Long id){
+    public ResponseEntity<Void> addReview(@RequestBody ReviewModel reviewModel, @PathVariable Long id){
         reviewService.addReview(reviewModel, id);
         return ResponseEntity.ok().build();
     }
@@ -29,7 +29,7 @@ public class ReviewController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ReviewModel> getFirmById(@PathVariable Long id){
+    public ResponseEntity<ReviewModel> getReviewById(@PathVariable Long id){
         return reviewService.getReviewById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 }
